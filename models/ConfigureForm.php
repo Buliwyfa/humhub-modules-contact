@@ -23,6 +23,12 @@ class ConfigureForm extends \yii\base\Model
      *
      * @var integer 
      */
+    public $sender;
+
+    /**
+     *
+     * @var integer 
+     */
     public $receipient;
 
     /**
@@ -42,6 +48,7 @@ class ConfigureForm extends \yii\base\Model
         parent::init();
         $module = $this->getModule();
         $this->guestOnly = $module->settings->get('guestOnly');
+        $this->sender = $module->settings->get('sender');
         $this->receipient = $module->settings->get('receipient');
         $this->beforeContactFormRender = $module->settings->get('beforeContactFormRender');
         $this->afterContactFormRender = $module->settings->get('afterContactFormRender');
@@ -61,8 +68,9 @@ class ConfigureForm extends \yii\base\Model
     public function rules()
     {
         return [
+            [['receipient', 'sender'], 'required'],
             ['guestOnly', 'boolean'],
-            ['receipient', 'integer'],
+            [['receipient', 'sender'], 'integer'],
             [['beforeContactFormRender', 'afterContactFormRender'], 'string'],
         ];
     }

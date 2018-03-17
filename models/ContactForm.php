@@ -54,17 +54,17 @@ class ContactForm extends Model
     public function send()
     {
         if ($this->validate()) {
-            // Switch Identity
-            $user = User::find()->where(['id' => 1])->one();
-            Yii::$app->user->switchIdentity($user);
-            $space = Space::find()->where(['name' => 'Communication'])->one();
+            $module = Yii::$app->getModule('contact');
+            $space = Space::find()->where(['id' => $module->settings->get('receipient')])->one();
             // Create a sample post
             $post = new Post();
             $post->message = '<strong>from:</strong> ' . $this->email . '(' . $this->name . ')<br>' . '<strong>subject:</strong> ' . $this->subject . '<br><br>' . $this->body;
             $post->content->container = $space;
+            $post->content->created_by = $module->settings->get('sender');
             $post->content->visibility = Content::VISIBILITY_PRIVATE;
+
             $post->save();
-            Yii::$app->user->logout();
+            //     Yii::$app->user->logout();
             return true;
         }
         return false;

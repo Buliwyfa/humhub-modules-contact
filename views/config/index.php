@@ -18,6 +18,7 @@ $spacesAvailable = yii\helpers\ArrayHelper::map(\humhub\modules\space\models\Spa
     <div class="panel-body">
         <?php $form = ActiveForm::begin(['id' => 'configure-form']); ?>
         <?= $form->field($model, 'guestOnly')->checkbox(null, true); ?>
+        <?= $form->field($model, 'sender'); ?>
         <?= $form->field($model, 'receipient')->dropDownList($spacesAvailable, ['data-ui-select2' => '']); ?>
         <?= $form->field($model, 'beforeContactFormRender')->textarea(); ?>
         <?= $form->field($model, 'afterContactFormRender')->textarea(); ?>
