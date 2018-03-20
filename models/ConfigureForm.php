@@ -106,6 +106,7 @@ class ConfigureForm extends \yii\base\Model
 
         $module = $this->getModule();
         $module->settings->set('guestOnly', $this->guestOnly);
+        $module->settings->set('sender', $this->sender);
         $module->settings->set('receipient', $this->receipient);
         $module->settings->set('beforeContactFormRender', $this->beforeContactFormRender);
         $module->settings->set('afterContactFormRender', $this->afterContactFormRender);
