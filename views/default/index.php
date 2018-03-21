@@ -17,8 +17,8 @@ $module = Yii::$app->getModule('contact');
             <?= $form->field($model, 'email')->textInput(['placeholder' => 'e-mail address',])->label(false) ?>
         </div>
         <div class="col-sm-5 col-md-3">
-            <?= $form->field($model, 'subject')->label(false) ?>
-            <?= $form->field($model, 'body')->textarea(['rows' => 3])->label(false) ?>
+            <?= $form->field($model, 'subject')->textInput(['placeholder' => 'subject'])->label(false) ?>
+            <?= $form->field($model, 'body')->textarea(['placeholder' => 'message body', 'rows' => 3])->label(false) ?>
         </div>
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
